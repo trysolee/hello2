@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <style>
+        #con {
+            margin: 10px;
+            font-size: 28px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        .txt {
+            margin: 5px 10px;
+            padding: 5px;
+            color: #000;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <label id="con">Hello APP</label>
+    <div id='sys-info'></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    onload = function() {
+
+        var dataBase = openDatabase("student", "1.0", "学生表", 1024 * 1024, function() {});
+        if (!dataBase) {
+            alert("数据库创建失败！");
+        } else {
+            alert("数据库创建ok！");
+        }
+
+        alert("end！");
+    };
+</script>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/list.css" />
+    <style>
+        #con {
+            margin: 10px;
+            font-size: 28px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        .txt {
+            margin: 5px 10px;
+            padding: 5px;
+            color: #000;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <label id="con">record</label>
+    <div class="H1M2">
+        <div class="H1h1">
+            输入条码
+        </div>
+        <input class="H1h2" type="text" name="tm" value="6464" id="tm" />
+        <div class="clear"></div>
+    </div>
+
+    <div class="empty1" onclick="camera();">
+        <div class="h1ld">
+            拍照
+        </div>
+        <div class="h2rx">
+            12349131004
+        </div>
+    </div>
+    <div class="H1M2" onclick="开始录音();">
+        <div class="H1h1">
+            开始录音
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="H1M2" onclick="stop();">
+        <div class="H1h1">
+            停止录音
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="H1M2" onclick="paly();">
+        <div class="H1h1">
+            播放
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="H1M2" onclick="stoppaly();">
+        <div class="H1h1">
+            停止
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    // 拍照 , 返回图片Url
+    //  成功
+
+
+    apiready = function() {
+
+
+    };
+
+    var path = 'fs://a.amr';
+
+    开始录音 = function() {
+        api.startRecord({
+            path: path
+        });
+    };
+
+    stop = function() {
+        api.stopRecord(function(ret, err) {
+            if (ret) {
+                var path = ret.path;
+                var duration = ret.duration;
+            }
+        });
+    };
+
+
+    paly = function() {
+        api.startPlay({
+            path: path
+        }, function(ret, err) {
+            if (ret) {
+                alert('播放完成');
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    };
+
+
+    stoppaly = function() {
+      api.stopPlay();
+    };
+
+
+</script>
+
+</html>

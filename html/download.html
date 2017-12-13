@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <style>
+        #con {
+            margin: 10px;
+            font-size: 28px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        .txt {
+            margin: 5px 10px;
+            padding: 5px;
+            color: #000;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <label id="con">Hello APP</label>
+    <div id='sys-info'></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+
+        // 'fs://' : 是app自己的目录 ,
+        // 'fs://download/' : 是 app下面 'download' 的目录
+        //
+        // 注意 : 不能覆盖已有的文件
+        // 并且没有<异常>提示 .
+        //
+
+        api.download({
+            url: 'http://cdn1.elitebabes.com/content/150901/long-legs-and-high-heels-of-anna-aj-will-make-your-day-03.jpg',
+            savePath: 'fs://download/img11.jpg',
+            report: true,
+            cache: true,
+            allowResume: true
+        }, function(ret, err) {
+            //这里ret就会返回这个文件保存后的路径 , 然后直接调用就好了~
+            console.log(JSON.stringify(ret));
+            if (ret.state == 1) {
+                alert('ok');
+
+            } else if (ret.state == 2) {
+                alert('err');
+
+            }
+        });
+    };
+</script>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <style>
+        #con {
+            margin: 10px;
+            font-size: 28px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        .txt {
+            margin: 5px 10px;
+            padding: 5px;
+            color: #000;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <label id="con">Hello APP</label>
+
+    <div class="aui-btn" onclick="go();">默认按钮</div>
+
+    <div id='sys-info'></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    //  测试两个 frame 之间参数<传递>和 <调用>
+    //
+
+    // 从<父window> 传递来一个 变量 <DAT>
+    // 这个<DAT>是一个<copy> 而不是 <引用>
+    // 对这个<新DAT> 的操作 , 不会影响到<父window>的数据
+    //
+
+    // 第二个记录
+
+
+    var DAT;
+
+    function go() {
+        api.sendEvent({
+            name: 'close',
+            extra: {
+                key1: 'try',
+                key2: 'value2'
+            }
+        });
+    };
+
+
+
+
+    apiready = function() {
+
+        DAT = api.pageParam;
+
+        DAT.a++;
+
+        var str = '<ul>';
+        str += '<li><div class="txt">DAT.b: ' + //
+            DAT.b + '</div></li>';
+        str += '<li><div class="txt">DAT.a: ' + //
+            DAT.a + '</div></li>';
+        str += '</ul>';
+
+        $api.byId('sys-info').innerHTML = str;
+
+    };
+</script>
+
+</html>
